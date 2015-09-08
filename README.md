@@ -1,1 +1,1 @@
-# discovery 
+# Nong Khai Discovery 
