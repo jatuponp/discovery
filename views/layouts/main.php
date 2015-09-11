@@ -25,9 +25,11 @@ AppAsset::register($this);
         <?php $this->head() ?>
     </head>
     <body>
-
         <?php $this->beginBody() ?>
+        <!-- Document Wrapper
+        ============================================= -->
         <div class="navbar-wrapper">
+
             <div class="container">
                 <div class="row">
                     <div class="col-xs-3 col-md-4">
@@ -44,11 +46,11 @@ AppAsset::register($this);
                                         <img src="<?= Yii::getAlias('@web') ?>/images/lang-en.png" width="38px" class="pull-right" style="padding: 2px; margin-left: 10px;"/>
                                     </a>
                                     <?php
-                                    if(Yii::$app->user->isGuest){
-                                    ?>
-                                    <a href="<?= Url::to(['site/login']) ?>">Login</a>
-                                    <?php }else{ ?>
-                                    <a href="<?= Url::to(['site/logout']) ?>" data-method="post">Logout</a>
+                                    if (Yii::$app->user->isGuest) {
+                                        ?>
+                                        <a href="<?= Url::to(['site/login']) ?>">Login</a>
+                                    <?php } else { ?>
+                                        <a href="<?= Url::to(['site/logout']) ?>" data-method="post">Logout</a>
                                     <?php } ?>
                                 </div>
                             </div>
@@ -108,6 +110,10 @@ AppAsset::register($this);
                 <p class="pull-right"><?= Yii::powered() . ' ' . Yii::getVersion() ?></p>
             </div>
         </footer>
+
+        <!-- Go To Top
+        ============================================= -->
+        <div id="gotoTop" class="icon-angle-up"></div>
 
         <?php $this->endBody() ?>
     </body>

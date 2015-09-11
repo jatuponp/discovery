@@ -68,11 +68,12 @@ class ArticleController extends \yii\web\Controller {
 
     public function actionUpdate($id = null) {
         $model = new Article;
-        if ($model->load($_POST)) {
-            $id = $_POST['Article']['id'];
+        if ($model->load(Yii::$app->request->post())) {
+            $request = Yii::$app->request->post('Article');
+            $id = $request['id'];
             if ($id) {
                 $model = Article::findOne($id);
-                $model->attributes = $_POST['Article'];
+                $model->attributes = $request;
             }
             if ($model->save()) {
                 $this->updateOrder('cid=' . $model->cid, '&langs=' . $model->langs);

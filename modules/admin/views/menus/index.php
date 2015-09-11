@@ -128,8 +128,8 @@ $this->title = 'Menus Management';
                             'headerOptions' => ['width' => '61%'],
                             'header' => 'หมวดหมู่',
                             'value' => function($model) {
-                        return $model['names'];
-                    },
+                                return $model['names'];
+                            },
                         ],
                         [
                             'headerOptions' => ['width' => '7%', 'style' => 'text-align:center;'],

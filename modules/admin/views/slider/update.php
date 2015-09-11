@@ -34,7 +34,7 @@ $this->title = 'บริหารภาพสไลด์';
     <br/>
     <div class="dashboard_box" style="padding-top: 15px;">
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-8">
                 <?= $form->field($model, 'cid')->dropDownList(app\models\TblSlidertype::makeDropDown(), ['style' => 'width:200px; max-width: 400px;']); ?>
 
                 <?php
@@ -53,12 +53,17 @@ $this->title = 'บริหารภาพสไลด์';
                     ]
                 ]);
                 echo "ขนาดภาพ Slide: 1,263*520 px<br/>ขนาดภาพ Event: 800*600px<br/><br/>";
-
-                echo $form->field($model, 'link_Url')->input('text', ['style' => 'width: 400px;']);
+                
                 //echo $form->field($model, 'target')->input('checkbox', ['style' => 'width: 400px;']);
                 echo $form->field($model, 'id', ['options' => ['class' => 'sr-only']])->hiddenInput();
                 echo $form->field($model, 'langs', ['options' => ['class' => 'sr-only']])->hiddenInput();
                 ?>
+            </div>
+            <div class="col-sm-4">
+                <?= $form->field($model, 'title')->input('text'); ?>
+                <?= $form->field($model, 'fulltexts')->textarea() ?>
+                <?= $form->field($model, 'positions')->dropDownList(['left'=>'ซ้าย','center'=>'ตรงกลาง','right'=>'ขวา',]); ?>
+                <?= $form->field($model, 'link_Url')->input('text', ['placeholder' => 'http://']); ?>
             </div>
         </div>
         <?php ActiveForm::end(); ?>

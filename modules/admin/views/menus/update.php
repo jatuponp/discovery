@@ -49,7 +49,7 @@ $this->title = 'Menus Management';
                         ],
                     ]);
                 } else if ($type == 'links') {
-                    echo $form->field($model, 'urls')->input('text', ['placeholder' => 'เช่น http://www.nkc.kku.ac.th']);
+                    echo $form->field($model, 'urls')->input('text', ['placeholder' => 'เช่น http://www.nongkhai.go.th']);
                 }
                 ?>
                 <?= $form->field($model, 'description')->textarea() ?>

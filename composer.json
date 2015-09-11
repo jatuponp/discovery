@@ -35,6 +35,7 @@
         "kartik-v/yii2-icons": "*",
 	"yurkinx/yii2-image": "*",
         "miloschuman/yii2-highcharts-widget": "*",
+        "thiagotalma/yii2-fullcalendar": "*",
         "newerton/yii2-fancybox": "*"
     },
     "config": {

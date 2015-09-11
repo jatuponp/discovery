@@ -3,8 +3,6 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\grid\GridView;
-use yii\grid\DataColumn;
-use app\models\Categories;
 use yii\helpers\Url;
 
 /**
@@ -41,7 +39,7 @@ $this->title = 'จัดการหมวดหมู่บทความ';
             <?php
             //echo $form->field($model, 'parent_id')->dropDownList(Categories::makeDropDown($model->langs), ['style' => 'margin-right: 10px;', 'onchange' => 'form.submit();']);
 //            $langOption = new \appCMS\language\LanguageCms();
-            //echo $form->field($model, 'langs')->dropDownList(\app\models\tblLangs::makeDropDown(), ['style' => 'width: 120px;', 'onchange' => 'form.submit();']);
+            echo $form->field($model, 'langs')->dropDownList(\app\models\tblLangs::makeDropDown(), ['style' => 'width: 120px;', 'onchange' => 'form.submit();']);
             ?>
 
             <?php ActiveForm::end(); ?>

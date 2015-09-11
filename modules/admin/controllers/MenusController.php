@@ -31,10 +31,11 @@ class MenusController extends \yii\web\Controller {
     public function actionIndex($id = null, $action = null) {
         $model = new Menus();
 
-        if ($model->load($_POST)) {
+        if ($model->load(Yii::$app->request->post())) {
+            $request = Yii::$app->request->post('Menus');
             $sess = array();
-            $sess['type'] = $_POST['Menus']['type'];
-            $sess['langs'] = $_POST['Menus']['langs'];
+            $sess['type'] = $request['type'];
+            $sess['langs'] = $request['langs'];
             Yii::$app->session->set('sessMenus', $sess);
         }
         
@@ -56,7 +57,7 @@ class MenusController extends \yii\web\Controller {
                 $this->published($id);
                 break;
             case 'order':
-                $this->order($id, $_REQUEST['ordering'], $_REQUEST['direction']);
+                $this->order($id, Yii::$app->getRequest()->getQueryParam('ordering'), Yii::$app->getRequest()->getQueryParam('direction'));
                 break;
             case 'typedelete':
                 $this->typedelete($id);

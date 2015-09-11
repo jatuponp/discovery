@@ -19,7 +19,7 @@ $this->registerJs('$().scroll(function(){$(".app-title").css("top",Math.max(0,25
         <?php $this->beginBody() ?>        
         <?php
         NavBar::begin([
-            'brandLabel' => '<div><i class="glyphicon glyphicon-grain" style="font-size: 46px;"></i>Content Management System</div>',
+            'brandLabel' => '<div><img src="' . Yii::getAlias('@web') . '/themes/convas/images/logo-dark.png" height="60px"/></div>',
             'brandUrl' => Yii::$app->homeUrl,
             'innerContainerOptions' => [
                 'class' => 'container-fluid'
