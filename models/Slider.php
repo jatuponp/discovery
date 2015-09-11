@@ -34,6 +34,7 @@ class Slider extends \yii\db\ActiveRecord {
         return [
             [['slider_Url'], 'required'],
             [['cid','target', 'published', 'ordering'], 'integer'],
+            [['title','fulltexts', 'positions'], 'string'],
             [['submitdate'], 'safe'],
             [['slider_Url', 'link_Url'], 'string', 'max' => 250]
         ];
@@ -52,6 +53,9 @@ class Slider extends \yii\db\ActiveRecord {
             'published' => 'Published',
             'ordering' => 'Ordering',
             'submitdate' => 'Submitdate',
+            'title' => 'หัวข้อ',
+            'fulltexts' => 'รายละเอียด', 
+            'positions' => 'ตำแหน่ง'
         ];
     }
 

@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Slider;
 use app\models\User;
 
 class SiteController extends Controller {
@@ -47,16 +48,18 @@ class SiteController extends Controller {
     }
 
     public function actionIndex() {
-        //echo \app\models\User::getPHash('153426');
-//        $user = new User();
-//        $user->username = 'webmaster';
-//        $user->email = 'jatuponp@gmail.com';
-//        $user->setPassword('153426');
-//        $user->generateAuthKey();
-//        if ($user->save()) {
-//            return $user;
-//        }
-        return $this->render('index');
+        $slider = new Slider();
+        
+        return $this->render('index', ['slider' => $slider]);
+    }
+    
+    public function actionContent($id) {
+        $counter = new \app\components\counter();
+        $counter->hitsCounter('site/content', $id);
+        
+        $model = \app\models\Article::findOne($id);
+        
+        return $this->render('content', ['model' => $model]);
     }
 
     public function actionLogin() {

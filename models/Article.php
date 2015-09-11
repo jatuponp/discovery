@@ -40,11 +40,10 @@ class Article extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['cid', 'title'], 'required'],
-            [['cid', 'ordering', 'published', 'frontpage', 'sci', 'nbs', 'la', 'isc'], 'integer'],
+            [['cid', 'ordering', 'published',], 'integer'],
             [['fulltexts', 'langs', 'search'], 'string'],
             [['startdate', 'finishdate', 'submitdate', 'applydate'], 'safe'],
             [['title'], 'string', 'max' => 300],
-            [['pins'], 'string', 'max' => 10]
         ];
     }
 
@@ -64,12 +63,6 @@ class Article extends \yii\db\ActiveRecord {
             'submitdate' => 'Submitdate',
             'applydate' => 'Applydate',
             'langs' => 'ภาษา',
-            'pins' => 'Pins',
-            'sci' => 'คณะวิทยาศาสตร์ประยุกต์และวิศวกรรมศาสตร์',
-            'nbs' => 'คณะบริหารธุรกิจ',
-            'la' => 'คณะศิลปศาสตร์',
-            'isc' => 'คณะสังคมศาสตร์บูรณาการ',
-            'frontpage' => 'Frontpage',
             'upload_files' => 'ภาพประกอบ'
         ];
     }
@@ -84,7 +77,6 @@ class Article extends \yii\db\ActiveRecord {
                 }
                 $this->submitdate = $now;
                 $this->applydate = $now;
-                $this->frontpage = 0;
                 $this->createBy = \Yii::$app->user->id;
                 if(!$this->startdate){
                     $this->startdate = '0000-00-00';

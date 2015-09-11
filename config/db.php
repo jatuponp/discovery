@@ -2,9 +2,9 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=10.0.1.20;dbname=discovery',
-    'username' => 'www57',
-    'password' => '1q2w3e4r',
+    'dsn' => 'mysql:host=localhost;dbname=discovery',
+    'username' => 'root',
+    'password' => '',
     'charset' => 'utf8',
     'tablePrefix' => 'tbl_'
 ];

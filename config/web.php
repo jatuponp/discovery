@@ -6,7 +6,7 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'language' => 'th',
+    'language' => 'th_TH',
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -47,6 +47,12 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
+        'view' => [
+            'theme' => [
+                'pathMap' => ['@app/views' => '@webroot/themes/convas'],
+                'baseUrl' => '@web/themes/convas'
+            ]
+        ],
         'image' => [
             'class' => 'yii\image\ImageDriver',
             'driver' => 'GD', //GD or Imagick
@@ -63,7 +69,13 @@ $config = [
                     ],
                 ]
             ]
-        ]
+        ],
+//        'bootstrap' => [
+//            [
+//                'class' => app\components\LanguageSelector::className(),
+//                'supportedLanguages' => ['th_TH', 'en_EN', 'lo_LO', 'vi_VI'],
+//            ],
+//        ],
     ],
     'modules' => [
         'admin' => [

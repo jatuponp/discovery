@@ -207,7 +207,7 @@ class Menus extends ActiveRecord {
             } else {
                 $data['label'] = '<i class="' . $r['icons'] . '"></i> ' . $r['names'];
                 $htt = substr($r['urls'], 0, 4);
-                $data['url'] = (($htt == 'http')? $r['urls']:$r['urls'].'&mid='.$r['type']);
+                $data['url'] = (($htt == 'http')? $r['urls']:$r['urls']);
                 if($r['target'] == 1){
                     $data['linkOptions'] = ['target' => '_blank'];
                 }

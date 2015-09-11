@@ -66,6 +66,7 @@ class TblMenutype extends ActiveRecord
         }
         $query->andWhere(['langs'=>$_lang]);
         $result = $query->all();
+        $data[''] = 'เลือกประเภทเมนู';
         foreach ($result as $m) {
             $data[$m->id] = $m->title;
         }
