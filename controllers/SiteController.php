@@ -9,7 +9,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Slider;
-use app\models\User;
+use app\models\Article;
 
 class SiteController extends Controller {
 
@@ -49,8 +49,9 @@ class SiteController extends Controller {
 
     public function actionIndex() {
         $slider = new Slider();
+        $news = new Article();
         
-        return $this->render('index', ['slider' => $slider]);
+        return $this->render('index', ['news' => $news,'slider' => $slider]);
     }
     
     public function actionContent($id) {
@@ -60,6 +61,20 @@ class SiteController extends Controller {
         $model = \app\models\Article::findOne($id);
         
         return $this->render('content', ['model' => $model]);
+    }
+    
+    public function actionSearch() {
+        $model = Article::find();
+        $search = \Yii::$app->getRequest()->getQueryParam('q');
+        if ($search) {
+            $model->orWhere('title LIKE :s', [':s' => "%$search%"]);
+            $model->orWhere('fulltexts LIKE :s', [':s' => "%$search%"]);
+        }
+        $model->andWhere(['published' => 1]);
+        $model->orderBy('ordering');
+        $model->limit(10);
+        $res = $model->all();
+        return $this->render('search', ['model' => $res, 'search' => $search]);
     }
 
     public function actionLogin() {

@@ -140,8 +140,9 @@ class Article extends \yii\db\ActiveRecord {
         $query = Article::find()->where(['cid' => $cid, 'published' => 1]);
         $query->andWhere(['OR', 'startdate = ' . "'0000-00-00'", "startdate <='" . $now . "'"]);
         $query->andWhere(['OR', 'finishdate = ' . "'0000-00-00'", "finishdate >='" . $now . "'"]);
-        if ($langs)
+        if ($langs):
             $query->andWhere(['langs' => $langs]);
+        endif;
 
         $query->orderBy('ordering ASC');
         $result = $query->all();

@@ -167,102 +167,27 @@ $slide = $slider->slider();
             <div class="divider"><i class="icon-circle center"></i></div>
         </div>
 
-        <div class="container clearfix">
+        <div class="container clear-bottommargin clearfix">
+            <div class="row">
 
-            <div class="row topmargin-lg bottommargin-sm">
-
-                <div class="heading-block center">
-                    <h2>Even more Feature Rich</h2>
-                    <span class="divcenter">Philanthropy convener livelihoods, initiative end hunger gender rights local. John Lennon storytelling; advocate, altruism impact catalyst.</span>
-                </div>
-
-                <div class="col-md-4 col-sm-6 bottommargin">
-
-                    <div class="feature-box fbox-right topmargin" data-animate="fadeIn">
-                        <div class="fbox-icon">
-                            <a href="#"><i class="icon-line-heart"></i></a>
+                <div class="col-md-3 col-sm-6 bottommargin">
+                    <div class="ipost clearfix">
+                        <div class="entry-image">
+                            <a href="#"><img class="image_fade" src="images/magazine/thumb/1.jpg" alt="Image"></a>
                         </div>
-                        <h3>Boxed &amp; Wide Layouts</h3>
-                        <p>Stretch your Website to the Full Width or make it boxed to surprise your visitors.</p>
-                    </div>
-
-                    <div class="feature-box fbox-right topmargin" data-animate="fadeIn" data-delay="200">
-                        <div class="fbox-icon">
-                            <a href="#"><i class="icon-line-paper"></i></a>
+                        <div class="entry-title">
+                            <h3><a href="blog-single.html">Bloomberg smart cities; change-makers economic security</a></h3>
                         </div>
-                        <h3>Extensive Documentation</h3>
-                        <p>We have covered each &amp; everything in our Docs including Videos &amp; Screenshots.</p>
-                    </div>
-
-                    <div class="feature-box fbox-right topmargin" data-animate="fadeIn" data-delay="400">
-                        <div class="fbox-icon">
-                            <a href="#"><i class="icon-line-layers"></i></a>
+                        <ul class="entry-meta clearfix">
+                            <li><i class="icon-calendar3"></i> 13th Jun 2014</li>
+                            <li><a href="blog-single.html#comments"><i class="icon-comments"></i> 53</a></li>
+                        </ul>
+                        <div class="entry-content">
+                            <p>Prevention effect, advocate dialogue rural development lifting people up community civil society. Catalyst, grantees leverage.</p>
                         </div>
-                        <h3>Parallax Support</h3>
-                        <p>Display your Content attractively using Parallax Sections with HTML5 Videos.</p>
                     </div>
-
-                </div>
-
-                <div class="col-md-4 hidden-sm bottommargin center">
-                    <img src="themes/convas/images/services/iphone7.png" alt="iphone 2">
-                </div>
-
-                <div class="col-md-4 col-sm-6 bottommargin">
-
-                    <div class="feature-box topmargin" data-animate="fadeIn">
-                        <div class="fbox-icon">
-                            <a href="#"><i class="icon-line-power"></i></a>
-                        </div>
-                        <h3>HTML5 Video</h3>
-                        <p>Canvas provides support for Native HTML5 Videos that can be added to a Background.</p>
-                    </div>
-
-                    <div class="feature-box topmargin" data-animate="fadeIn" data-delay="200">
-                        <div class="fbox-icon">
-                            <a href="#"><i class="icon-line-check"></i></a>
-                        </div>
-                        <h3>Endless Possibilities</h3>
-                        <p>Complete control on each &amp; every element that provides endless customization.</p>
-                    </div>
-
-                    <div class="feature-box topmargin" data-animate="fadeIn" data-delay="400">
-                        <div class="fbox-icon">
-                            <a href="#"><i class="icon-bulb"></i></a>
-                        </div>
-                        <h3>Light &amp; Dark Color Schemes</h3>
-                        <p>Change your Website's Primary Scheme instantly by simply adding the dark class.</p>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="row clearfix common-height">
-
-            <div class="col-md-6 center col-padding" style="background: url('themes/convas/images/services/main-bg.jpg') center center no-repeat; background-size: cover;">
-                <div>&nbsp;</div>
-            </div>
-
-            <div class="col-md-6 center col-padding" style="background-color: #F5F5F5;">
-                <div>
-                    <div class="heading-block nobottomborder">
-                        <span class="before-heading color">Easily Understandable &amp; Customizable.</span>
-                        <h3>Walkthrough Videos &amp; Demos</h3>
-                    </div>
-
-                    <div class="center bottommargin">
-                        <a href="http://vimeo.com/101373765" data-lightbox="iframe" style="position: relative;">
-                            <img src="themes/convas/images/services/video.jpg" alt="Video">
-                            <span class="i-overlay nobg"><img src="themes/convas/images/icons/video-play.png" alt="Play"></span>
-                        </a>
-                    </div>
-                    <p class="lead nobottommargin">Democracy inspire breakthroughs, Rosa Parks; inspiration raise awareness natural resources. Governance impact; transformative donation philanthropy, respect reproductive.</p>
                 </div>
             </div>
-
         </div>
 
     </div>

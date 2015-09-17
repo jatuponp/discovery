@@ -51,6 +51,12 @@ class counter extends Component {
         $cnt = $query->count();
         return $cnt;
     }
+    
+    public function getTotalCounter() {
+        $query = Sitecounter::find()->where(['module' => 'site']);
+        $cnt = $query->count();
+        return $cnt;
+    }
 
     protected function visitor_country() {
         $client = @$_SERVER['HTTP_CLIENT_IP'];

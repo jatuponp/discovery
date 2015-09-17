@@ -6,8 +6,16 @@ use app\components\counter;
 $d = new Ndate();
 $count = new counter();
 ?>
+<section id="page-title">
+
+    <div class="container clearfix">
+        <h1>ข้อมูลการท่องเที่ยว</h1>
+        <span>จังหวัดหนองคาย</span>
+    </div>
+
+</section><!-- #page-title end -->
 <!-- Content
-        ============================================= -->
+============================================= -->
 <section id="content">
 
     <div class="content-wrap">

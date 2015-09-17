@@ -23,7 +23,7 @@ class GuideController extends Controller {
 
     public function actionIndex($cid = 1) {
         $langs = \Yii::$app->language;
-        if($langs == 'th-TH'){
+        if($langs == 'th_TH'){
             $langs = 'thai';
         }
         $query = TblGuides::find()->where(['cid' => $cid, 'langs' => $langs, 'published' => 1]);
