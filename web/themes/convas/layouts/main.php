@@ -51,19 +51,14 @@ $this->registerMetaTag(['description' => 'หนองคาย จังหว�
                             $_l = Yii::$app->language;
                             if ($_l == 'th_TH') {
                                 $type = 1;
-                                $_forlangs = 'thai';
                             } else if ($_l == 'en_EN') {
                                 $type = 2;
-                                $_forlangs = 'enlish';
                             } else if ($_l == 'lo_LO') {
                                 $type = 3;
-                                $_forlangs = 'lao';
                             } else if ($_l == 'vi_VI') {
                                 $type = 4;
-                                $_forlangs = 'thai';
                             } else {
                                 $type = 1;
-                                $_forlangs = 'thai';
                             }
                             $menuItems = app\models\Menus::listMenus(0, 0, $type);
                             echo NavX::widget([
@@ -160,7 +155,7 @@ $this->registerMetaTag(['description' => 'หนองคาย จังหว�
                         <div class="col_one_fifth">
 
                             <?php
-                            $ques = \app\models\Menus::find()->where(['parent_id' => 0, 'published' => 1, 'langs' => $_forlangs])->orderBy('ordering');
+                            $ques = \app\models\Menus::find()->where(['parent_id' => 0, 'published' => 1, 'langs' => \app\components\langs::getlang()])->orderBy('ordering');
                             $rows = $ques->all();
                             $r = $rows[0];
                             ?>
