@@ -48,30 +48,30 @@ class GuideController extends Controller {
     
     public function actionData() {
         
-        $result = \app\models\WebFoo::find()->all();
-        foreach ($result as $r){
-            $m = new TblGuides();
-            $m->cid = 3;
-            $m->titles = $r->titles;
-            $m->address = $r->address;
-            $m->tampon = $r->tampon;
-            $m->amphur = $r->amphur;
-            $m->gps = $r->gps;
-            $m->distance = $r->distance;
-            $m->fulltexts = (($r->fulltexts)? $r->fulltexts:'-');
-            $m->contacts = $r->contacts;
-            $m->phone = $r->phone;
-            $m->fax = $r->fax;
-            $m->emails = $r->emails;
-            $m->website = $r->website;
-            $m->langs = $r->langs;
-            $m->published = 1;
-            $m->applyDate = $r->applyDate;
-            if(!$m->save()){
-                print_r($m->getErrors());
-                exit();
-            }
-        }
+//        $result = \app\models\WebFoo::find()->all();
+//        foreach ($result as $r){
+//            $m = new TblGuides();
+//            $m->cid = 3;
+//            $m->titles = $r->titles;
+//            $m->address = $r->address;
+//            $m->tampon = $r->tampon;
+//            $m->amphur = $r->amphur;
+//            $m->gps = $r->gps;
+//            $m->distance = $r->distance;
+//            $m->fulltexts = (($r->fulltexts)? $r->fulltexts:'-');
+//            $m->contacts = $r->contacts;
+//            $m->phone = $r->phone;
+//            $m->fax = $r->fax;
+//            $m->emails = $r->emails;
+//            $m->website = $r->website;
+//            $m->langs = $r->langs;
+//            $m->published = 1;
+//            $m->applyDate = $r->applyDate;
+//            if(!$m->save()){
+//                print_r($m->getErrors());
+//                exit();
+//            }
+//        }
         
     }
 
