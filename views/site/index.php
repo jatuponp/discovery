@@ -135,22 +135,33 @@ $slide = $slider->slider();
 
     <div class="content-wrap">
         <div class="container clearfix">
-            <div class="row clearfix">
-                <div class="col-lg-5">
-                    <div class="heading-block topmargin">
-                        <h1>ยินดีต้อนรับสู่ <br/> จังหวัดหนองคาย</h1>
+            <?php
+            $guid = app\models\TblGuides::find()->where(['cid' => 1, 'published' => 1, 'langs' => \app\components\langs::getlang()])->limit(30)->orderBy('rand()')->all();
+            foreach ($guid as $r):
+                $cont = new app\components\Ncontent($r->fulltexts);
+                $txt = trim($cont->getLimitText());
+                if ($cont->getImg() && !empty($txt) ):
+                    ?>
+                    <div class="row clearfix">
+                        <div class="col-lg-6">
+                            <div class="heading-block topmargin">
+                                <h1><?= Yii::t('app', 'Welcome') ?></h1>
+                            </div>
+                            <p class="lead" style="word-wrap: break-word;"><b><?= $r->titles ?></b><br/><?= trim($cont->getLimitText()) ?> <a href="<?= \yii\helpers\Url::to(['guide/view', 'id'=>$r->id]) ?>"><?= Yii::t('app', 'more') ?></a></p>
+                        </div>
+                        <div class="col-lg-6">
+                            <div style="position: relative; margin-bottom: -60px;" class="ohidden" data-height-lg="426" data-height-md="567" data-height-sm="470" data-height-xs="287" data-height-xxs="183">
+                                <img src="<?= Yii::getAlias('@web') . '/' . $cont->getImg() ?>" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" data-delay="100" alt="discover">
+                                <!--<img src="images/stories/travels/mnongkhai/lam21.jpg" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" data-delay="400" alt="iPad">-->
+                            </div>
+                        </div>
                     </div>
-                    <p class="lead">เมืองน่าอยู่อันดับ 7 ของโลก</p>
-                </div>
-                <div class="col-lg-7">
-                    <div style="position: relative; margin-bottom: -60px;" class="ohidden" data-height-lg="426" data-height-md="567" data-height-sm="470" data-height-xs="287" data-height-xxs="183">
-                        <img src="images/stories/travels/mnongkhai/mm2.jpg" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" data-delay="100" alt="Chrome">
-                        <!--<img src="images/stories/travels/mnongkhai/lam21.jpg" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" data-delay="400" alt="iPad">-->
-                    </div>
-                </div>
-            </div>
+                    <div class="divider"><i class="icon-circle center"></i></div>
+                    <?php break; ?>
+                <?php endif; ?>
+            <?php endforeach; ?>
         </div>
-        <br/><br/><br/>
+
 
         <div class="container clearfix">
             <div class="col_full clearfix">
@@ -169,7 +180,9 @@ $slide = $slider->slider();
 
         <div class="container clear-bottommargin clearfix">
             <div class="row">
-
+                <?php
+                $new = $news->news();
+                ?>
                 <div class="col-md-3 col-sm-6 bottommargin">
                     <div class="ipost clearfix">
                         <div class="entry-image">

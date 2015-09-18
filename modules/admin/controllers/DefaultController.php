@@ -5,9 +5,25 @@ namespace app\modules\admin\controllers;
 use Yii;
 use yii\web\Controller;
 use app\models\Sitecounter;
+use yii\filters\AccessControl;
 
 class DefaultController extends Controller
 {
+    public function behaviors() {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => ['Editor']
+                    ],
+                ],
+            ],
+        ];
+    }
+    
     public function actionIndex()
     {
         $model = new Sitecounter();
