@@ -121,7 +121,7 @@ class TblGuides extends \yii\db\ActiveRecord {
     }
 
     public function getCat($cid = 1) {
-        $cat = array('1' => 'แหล่งท่องเที่ยว', '2' => 'โรงแรม ที่พัก', '3' => 'ร้านอาหาร', '4' => 'ของที่ระลึก');
+        $cat = array('1' => 'Tourist Attraction', '2' => 'Hotel', '3' => 'Restaurant', '4' => 'Souvenir');
         return $cat[$cid];
     }
 

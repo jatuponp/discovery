@@ -100,10 +100,10 @@ class tblGallery extends \yii\db\ActiveRecord
         return $dataProvider;
     }
     
-    public function lists($limit = '3') {
+    public function lists($amphur = null,$limit = '3') {
         $search = $this->search;
         $langs = $this->langs;
-        $amphur = $this->amphur;
+        //$amphur = $this->amphur;
         $query = tblGallery::find()->where('title LIKE :s', [':s' => "%$search%"]);
         if ($langs){
             $query->andWhere(['langs' => $langs]);

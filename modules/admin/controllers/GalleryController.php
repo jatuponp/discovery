@@ -47,13 +47,14 @@ class GalleryController extends \yii\web\Controller {
     public function actionUpdate($id = null) {
         $model = new tblGallery;
         if ($model->load(Yii::$app->request->post())) {
-            $id = $_POST['tblGallery']['id'];
+            $request = Yii::$app->request->post('tblGallery');
+            $id = $request['id'];
             if ($id) {
                 $model = tblGallery::findOne($id);
-                $model->attributes = $_POST['tblGallery'];
+                $model->attributes = $request;
             }
             if ($model->save()) {
-                return $this->redirect(['index', 'langs' => $_POST['tblGallery']['langs']]);
+                return $this->redirect(['index', 'langs' => $request['langs']]);
             } else {
                 print_r($model->getErrors());
                 exit();
@@ -63,7 +64,7 @@ class GalleryController extends \yii\web\Controller {
         if ($id) {
             $model = tblGallery::findOne($id);
         } else {
-            $model->langs = $_REQUEST['langs'];
+            $model->langs = \Yii::$app->getRequest()->getQueryParam('langs');
         }
         return $this->render('update', [
                     'model' => $model,

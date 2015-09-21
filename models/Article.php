@@ -78,10 +78,10 @@ class Article extends \yii\db\ActiveRecord {
                 $this->submitdate = $now;
                 $this->applydate = $now;
                 $this->createBy = \Yii::$app->user->id;
-                if(!$this->startdate){
+                if (!$this->startdate) {
                     $this->startdate = '0000-00-00';
                 }
-                if(!$this->finishdate){
+                if (!$this->finishdate) {
                     $this->finishdate = '0000-00-00';
                 }
                 if (!$this->langs) {
@@ -146,6 +146,50 @@ class Article extends \yii\db\ActiveRecord {
 
         $query->orderBy('ordering ASC');
         $result = $query->all();
+
+        return $result;
+    }
+
+    public function frontNews() {
+        $langs = \app\components\langs::getLang();
+        $now = date('Y-m-d');
+        $_lan = [$langs, 'english', 'thai']; //ค้นหาข่าวในภาษานั้น ๆ ก่อนถ้าไม่เจอข่าว ให้ค้นหาในภาษาอังกฤษ ภาษาไทย ตามลำดับ
+        $cat = ['thai' => 2, 'english' => 7];
+        foreach ($_lan as $l) {
+            $cid = $cat[$l];
+            $query = Article::find()->where(['cid' => $cid, 'langs' => $l, 'published' => 1]);
+            $query->andWhere(['OR', 'startdate = ' . "'0000-00-00'", "startdate <='" . $now . "'"]);
+            $query->andWhere(['OR', 'finishdate = ' . "'0000-00-00'", "finishdate >='" . $now . "'"]);
+            $query->orderBy('ordering ASC');
+            $result = $query->limit(3)->all();
+            
+            //ถ้าเจอข่าวมากกว่า 1 ออกจากการค้นหาข่าว
+            if(count($result) > 0){
+                break;
+            }
+        }
+
+        return $result;
+    }
+    
+    public function eventNews() {
+        $langs = \app\components\langs::getLang();
+        $now = date('Y-m-d');
+        $_lan = [$langs, 'english', 'thai']; //ค้นหาข่าวในภาษานั้น ๆ ก่อนถ้าไม่เจอข่าว ให้ค้นหาในภาษาอังกฤษ ภาษาไทย ตามลำดับ
+        $cat = ['thai' => 2, 'english' => 7];
+        foreach ($_lan as $l) {
+            $cid = $cat[$l];
+            $query = Article::find()->where(['cid' => $cid, 'langs' => $l, 'published' => 1]);
+            $query->andWhere(['OR', 'startdate = ' . "'0000-00-00'", "startdate <='" . $now . "'"]);
+            $query->andWhere(['OR', 'finishdate = ' . "'0000-00-00'", "finishdate >='" . $now . "'"]);
+            $query->orderBy('ordering ASC');
+            $result = $query->limit(4)->all();
+            
+            //ถ้าเจอข่าวมากกว่า 1 ออกจากการค้นหาข่าว
+            if(count($result) > 0){
+                break;
+            }
+        }
 
         return $result;
     }
