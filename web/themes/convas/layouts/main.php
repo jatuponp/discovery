@@ -137,7 +137,7 @@ $this->registerMetaTag(['description' => 'หนองคาย จังหว�
                     <div class="footer-widgets-wrap clearfix">
                         <div class="col_one_fifth">
                             <div class="widget clearfix">
-                                <img src="<?= Yii::getAlias('@web') ?>/images/01.png" alt="">
+                                <img src="<?= Yii::getAlias('@web') ?>/images/01.png" alt="" style="margin-bottom: 15px;">
                                 <br/>
                                 <div>
                                     <address>
@@ -237,46 +237,6 @@ $this->registerMetaTag(['description' => 'หนองคาย จังหว�
 
                         </div>
 
-                        <!--                        <div class="col_one_third col_last">
-                        
-                                                    <div class="widget clearfix" style="margin-bottom: -20px;">
-                        
-                                                        <div class="row">
-                        
-                                                            <div class="col-md-6 bottommargin-sm">
-                                                                <div class="counter counter-small"><span data-from="50" data-to="<?= \app\components\counter::getTotalCounter() ?>" data-refresh-interval="80" data-speed="3000" data-comma="true"></span></div>
-                                                                <h5 class="nobottommargin">จำนวนผู้เยื่ยมชม</h5>
-                                                            </div>
-                        
-                                                        </div>
-                        
-                                                    </div>
-                        
-                                                    <div class="widget clearfix" style="margin-bottom: -20px;">
-                        
-                                                        <div class="row">
-                        
-                                                            <div class="col-md-6 clearfix bottommargin-sm">
-                                                                <a href="#" class="social-icon si-dark si-colored si-facebook nobottommargin" style="margin-right: 10px;">
-                                                                    <i class="icon-facebook"></i>
-                                                                    <i class="icon-facebook"></i>
-                                                                </a>
-                                                                <a href="#"><small style="display: block; margin-top: 3px;"><strong>Like us</strong><br>on Facebook</small></a>
-                                                            </div>
-                                                            <div class="col-md-6 clearfix">
-                                                                <a href="#" class="social-icon si-dark si-colored si-rss nobottommargin" style="margin-right: 10px;">
-                                                                    <i class="icon-rss"></i>
-                                                                    <i class="icon-rss"></i>
-                                                                </a>
-                                                                <a href="#"><small style="display: block; margin-top: 3px;"><strong>Subscribe</strong><br>to RSS Feeds</small></a>
-                                                            </div>
-                        
-                                                        </div>
-                        
-                                                    </div>
-                        
-                                                </div>-->
-
                     </div><!-- .footer-widgets-wrap end -->
 
                 </div>
@@ -294,7 +254,7 @@ $this->registerMetaTag(['description' => 'หนองคาย จังหว�
 
 					<div class="col_half col_last tright">
 						<div class="fright clearfix">
-                                                    &nbsp;จำนวนผู้เยี่ยมชม: <?= number_format(\app\components\counter::getTotalCounter(), 0, '.', ',') ?>
+                                                    &nbsp;<?= Yii::t('app', 'Site Counter') ?>: <?= number_format(\app\components\counter::getTotalCounter(), 0, '.', ',') ?>
 						</div>
 
 						<div class="clear"></div>
