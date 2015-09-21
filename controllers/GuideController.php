@@ -22,11 +22,8 @@ class GuideController extends Controller {
     }
 
     public function actionIndex($cid = 1) {
-        $langs = \Yii::$app->language;
-        if($langs == 'th_TH'){
-            $langs = 'thai';
-        }
-        $query = TblGuides::find()->where(['cid' => $cid, 'langs' => $langs, 'published' => 1]);
+        $langs = \app\components\langs::getLang();
+        $query = TblGuides::find()->where(['cid' => $cid, 'langs' => $langs, 'published' => 1])->orderBy('rand()');
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => 10]);
         $list = $query->offset($pages->offset)
