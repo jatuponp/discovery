@@ -10,8 +10,8 @@ use yii\widgets\LinkPager;
 <section id="page-title">
 
     <div class="container clearfix">
-        <h1>ข้อมูลแหล่งท่องเที่ยวจังหวัดหนองคาย</h1>
-        <span><?= app\models\TblGuides::getCat($cid) ?></span>
+        <h1><?= Yii::t('app', 'Tourist Information') ?></h1>
+        <span><?= Yii::t('app', app\models\TblGuides::getCat($cid)) ?></span>
     </div>
 
 </section><!-- #page-title end -->
@@ -32,7 +32,11 @@ use yii\widgets\LinkPager;
                         ?>
                         <div class="entry clearfix">
                             <div class="entry-image">
-                                <a href="<?= $cont->getImg() ?>" data-lightbox="image"><img class="image_fade" src="<?= $cont->getImg() ?>"></a>
+                                <?php if ($cont->getImg()) : ?>
+                                    <a href="<?= $cont->getImg() ?>" data-lightbox="image"><img class="image_fade" src="<?= $cont->getImg() ?>"></a>
+                                <?php else: ?>
+                                    <img class="image_fade" src="<?= Yii::getAlias('@web') . '/images/emptyImg.png' ?>">
+                                <?php endif; ?>
                             </div>
                             <div class="entry-c">
                                 <div class="entry-title">
@@ -48,7 +52,7 @@ use yii\widgets\LinkPager;
                                     if ($cont->getLimitText()) {
                                         ?>
                                         <p><?= $cont->getLimitText() ?></p>
-                                        <?php } else {
+                                    <?php } else {
                                         ?>
                                         <p>
                                             <?= $r->address ?><br/>

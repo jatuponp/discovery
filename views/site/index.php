@@ -140,14 +140,14 @@ $slide = $slider->slider();
             foreach ($guid as $r):
                 $cont = new app\components\Ncontent($r->fulltexts);
                 $txt = trim($cont->getLimitText());
-                if ($cont->getImg() && !empty($txt) ):
+                if ($cont->getImg() && !empty($txt)):
                     ?>
                     <div class="row clearfix">
                         <div class="col-lg-6">
                             <div class="heading-block topmargin">
                                 <h1><?= Yii::t('app', 'Welcome') ?></h1>
                             </div>
-                            <p class="lead" style="word-wrap: break-word;"><b><?= $r->titles ?></b><br/><?= trim($cont->getLimitText()) ?> <a href="<?= \yii\helpers\Url::to(['guide/view', 'id'=>$r->id]) ?>"><?= Yii::t('app', 'more') ?></a></p>
+                            <p class="lead" style="word-wrap: break-word;"><b><?= $r->titles ?></b><br/><?= trim($cont->getLimitText()) ?> <a href="<?= \yii\helpers\Url::to(['guide/view', 'id' => $r->id]) ?>"><?= Yii::t('app', 'more') ?></a></p>
                         </div>
                         <div class="col-lg-6">
                             <div style="position: relative; margin-bottom: -60px;" class="ohidden" data-height-lg="426" data-height-md="567" data-height-sm="470" data-height-xs="287" data-height-xxs="183">
@@ -165,14 +165,14 @@ $slide = $slider->slider();
 
         <div class="container clearfix">
             <div class="col_full clearfix">
-                <h3><?= Yii::t('app', 'Gallery') ?></h3>
+                <h3><a href="<?= \yii\helpers\Url::to(['gallery/index']) ?>"><?= Yii::t('app', 'Gallery') ?></a></h3>
                 <div style="margin-right: -1px; position: relative; height: 855.75px;" class="masonry-thumbs col-3" data-big="2" data-lightbox="gallery">
-                    <a style="width: 380px; position: absolute; left: 0px; top: 0px;" href="images/frontgallery/street_marget.jpg" data-lightbox="gallery-item"><img style="opacity: 1;" class="image_fade" src="images/frontgallery/street_marget.jpg" alt="Gallery Thumb 1"></a>
-                    <a style="width: 760px; position: absolute; left: 380px; top: 0px;" href="images/frontgallery/watpochai.jpg" data-lightbox="gallery-item"><img style="opacity: 1;" class="image_fade" src="images/frontgallery/watpochai.jpg" alt="Gallery Thumb 2"></a>
-                    <a style="width: 380px; position: absolute; left: 0px; top: 285px;" href="images/frontgallery/street_marget.jpg" data-lightbox="gallery-item"><img style="opacity: 1;" class="image_fade" src="images/frontgallery/street_marget.jpg" alt="Gallery Thumb 3"></a>
-                    <a style="width: 380px; position: absolute; left: 380px; top: 570px;" href="images/frontgallery/street_marget.jpg" data-lightbox="gallery-item"><img style="opacity: 1;" class="image_fade" src="images/frontgallery/street_marget.jpg" alt="Gallery Thumb 4"></a>
-                    <a style="width: 380px; position: absolute; left: 760px; top: 570px;" href="images/frontgallery/street_marget.jpg" data-lightbox="gallery-item"><img style="opacity: 1;" class="image_fade" src="images/frontgallery/street_marget.jpg" alt="Gallery Thumb 5"></a>
-                    <a style="width: 380px; position: absolute; left: 0px; top: 570px;" href="images/frontgallery/river01.jpg" data-lightbox="gallery-item"><img style="opacity: 1;" class="image_fade" src="images/frontgallery/river01.jpg" alt="Gallery Thumb 6"></a>
+                    <a style="width: 380px; position: absolute; left: 0px; top: 0px;" href="images/frontgallery/street_marget.jpg" data-lightbox="gallery-item"><img style="opacity: 1;" class="image_fade" src="images/frontgallery/street_marget.jpg"></a>
+                    <a style="width: 760px; position: absolute; left: 380px; top: 0px;" href="images/frontgallery/nongkhai.jpg" data-lightbox="gallery-item"><img style="opacity: 1;" class="image_fade" src="images/frontgallery/nongkhai.jpg"></a>
+                    <a style="width: 380px; position: absolute; left: 0px; top: 285px;" href="images/frontgallery/bride.jpg" data-lightbox="gallery-item"><img style="opacity: 1;" class="image_fade" src="images/frontgallery/bride.jpg"></a>
+                    <a style="width: 380px; position: absolute; left: 380px; top: 570px;" href="images/frontgallery/river02.jpg" data-lightbox="gallery-item"><img style="opacity: 1;" class="image_fade" src="images/frontgallery/river02.jpg"></a>
+                    <a style="width: 380px; position: absolute; left: 760px; top: 570px;" href="images/frontgallery/river03.jpg" data-lightbox="gallery-item"><img style="opacity: 1;" class="image_fade" src="images/frontgallery/river03.jpg"></a>
+                    <a style="width: 380px; position: absolute; left: 0px; top: 570px;" href="images/frontgallery/river01.jpg" data-lightbox="gallery-item"><img style="opacity: 1;" class="image_fade" src="images/frontgallery/river01.jpg"></a>
                 </div>
             </div>
             <div class="divider"><i class="icon-circle center"></i></div>
@@ -180,26 +180,28 @@ $slide = $slider->slider();
 
         <div class="container clear-bottommargin clearfix">
             <div class="row">
+                <h3><a href="<?= \yii\helpers\Url::to(['site/viewall']) ?>"><?= Yii::t('app', 'News') ?></a></h3>
                 <?php
-                $new = $news->news();
-                ?>
-                <div class="col-md-3 col-sm-6 bottommargin">
-                    <div class="ipost clearfix">
-                        <div class="entry-image">
-                            <a href="#"><img class="image_fade" src="images/magazine/thumb/1.jpg" alt="Image"></a>
-                        </div>
-                        <div class="entry-title">
-                            <h3><a href="blog-single.html">Bloomberg smart cities; change-makers economic security</a></h3>
-                        </div>
-                        <ul class="entry-meta clearfix">
-                            <li><i class="icon-calendar3"></i> 13th Jun 2014</li>
-                            <li><a href="blog-single.html#comments"><i class="icon-comments"></i> 53</a></li>
-                        </ul>
-                        <div class="entry-content">
-                            <p>Prevention effect, advocate dialogue rural development lifting people up community civil society. Catalyst, grantees leverage.</p>
+                foreach ($news->frontNews() as $n):
+                    $tent = new app\components\Ncontent($n->fulltexts);
+                    ?>
+                    <div class="col-md-4 col-sm-6 bottommargin">
+                        <div class="ipost clearfix">
+                            <div class="entry-image">
+                                <a href="<?= \yii\helpers\Url::to(['site/view', 'id' => $n->id]) ?>"><img class="image_fade" src="<?= $tent->getImg() ?>" alt="Image"></a>
+                            </div>
+                            <div class="entry-title">
+                                <h3><a href="<?= \yii\helpers\Url::to(['site/view', 'id' => $n->id]) ?>"><?= $n->title ?></a></h3>
+                            </div>
+                            <ul class="entry-meta clearfix">
+                                <li><i class="icon-calendar3"></i> <?= $n->applydate ?></li>
+                            </ul>
+                            <div class="entry-content">
+                                <p><?= $tent->getLimitText() ?></p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
 
