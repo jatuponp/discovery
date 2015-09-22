@@ -12925,3 +12925,48 @@ body:not(.no-transition) #wrapper,
 	padding:0!important
 }
 
+.gallery-item{
+    display: table;
+    height: 90px;
+    border: 1px solid #ddd;
+    box-shadow: 1px 1px 5px 0px #a2958a;
+    float: left;
+    margin: 8px;
+}
+
+.gallery-item img{
+    height: 80px;
+    margin: 5px;
+}
+
+.gallery-header{
+    padding: 10px 0px 4px;     
+    font-weight: bold; 
+    color: #0099cc;
+    font-size: 16px; 
+    /*border-bottom: 1px solid #0099cc;*/
+}
+
+.gallery-list{
+    list-style: none; 
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.gallery-list li{
+    padding-bottom: 20px;
+    display: inline-block;
+}
+
+.fc-center h2{
+    color: #ffffff;
+}
+
+.fc-day-header {
+    color: #ffffff;
+}
+
+/*.fc-view-container{
+    background-color: #eee;
+}*/
+

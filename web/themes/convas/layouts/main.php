@@ -138,7 +138,6 @@ $this->registerMetaTag(['description' => 'หนองคาย จังหว�
                         <div class="col_one_fifth">
                             <div class="widget clearfix">
                                 <img src="<?= Yii::getAlias('@web') ?>/images/01.png" alt="" style="margin-bottom: 15px;">
-                                <br/>
                                 <div>
                                     <address>
                                         <strong>ที่ตั้ง:</strong><br>
@@ -249,7 +248,7 @@ $this->registerMetaTag(['description' => 'หนองคาย จังหว�
 
 					<div class="col_half">
 						Copyrights &copy; 2015 NongkhaiDiscovery. All rights reserved.<br>
-						<div class="copyright-links"><a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
+                                                <div class="copyright-links"><a href="<?= Url::to(['site/sitemap']) ?>"><?= Yii::t('app', 'Site Map') ?></a> <!--/ <a href="#">Privacy Policy</a>--></div>
 					</div>
 
 					<div class="col_half col_last tright">
