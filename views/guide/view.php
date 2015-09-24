@@ -3,9 +3,12 @@
 use yii\helpers\Url;
 use app\components\Ndate;
 use app\components\Ncontent;
-use yii\widgets\LinkPager;
+use app\components\counter;
 
 $d = new Ndate();
+$cnt = new counter();
+$this->title = $model->titles;
+$this->registerMetaTag(['description' => $model->titles]);
 ?>
 <!-- Page Title
                 ============================================= -->
@@ -25,7 +28,7 @@ $d = new Ndate();
                 <ul class="entry-meta clearfix">
                     <li><i class="icon-calendar3"></i> <?= $d->getThaiLongDate($model->applyDate) ?></li>
                     <li><i class="icon-user"></i> admin</li>
-                    <li><i class="icon-comments"></i> 13 Views</li>
+                    <li><i class="icon-comments"></i> <?= $cnt->getHitsCounter('guide/view', $model->id) ?> Views</li>
                 </ul>
 
                 <div class="fslider" data-arrows="false" data-animation="fade" data-thumbs="true">

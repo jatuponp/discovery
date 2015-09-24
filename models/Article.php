@@ -134,7 +134,7 @@ class Article extends \yii\db\ActiveRecord {
         return $dataProvider;
     }
 
-    public function news($cid = null) {
+    public function news($cid = null, $limit = null) {
         $langs = $this->langs;
         $now = date('Y-m-d');
         $query = Article::find()->where(['cid' => $cid, 'published' => 1]);
@@ -145,6 +145,9 @@ class Article extends \yii\db\ActiveRecord {
         endif;
 
         $query->orderBy('ordering ASC');
+        if($limit):
+            $query->limit($limit);
+        endif;
         $result = $query->all();
 
         return $result;
@@ -172,18 +175,18 @@ class Article extends \yii\db\ActiveRecord {
         return $result;
     }
     
-    public function eventNews() {
+    public function eventNews($limit = 4) {
         $langs = \app\components\langs::getLang();
         $now = date('Y-m-d');
         $_lan = [$langs, 'english', 'thai']; //ค้นหาข่าวในภาษานั้น ๆ ก่อนถ้าไม่เจอข่าว ให้ค้นหาในภาษาอังกฤษ ภาษาไทย ตามลำดับ
-        $cat = ['thai' => 2, 'english' => 7];
+        $cat = ['thai' => 3, 'english' => 8];
         foreach ($_lan as $l) {
             $cid = $cat[$l];
             $query = Article::find()->where(['cid' => $cid, 'langs' => $l, 'published' => 1]);
-            $query->andWhere(['OR', 'startdate = ' . "'0000-00-00'", "startdate <='" . $now . "'"]);
-            $query->andWhere(['OR', 'finishdate = ' . "'0000-00-00'", "finishdate >='" . $now . "'"]);
-            $query->orderBy('ordering ASC');
-            $result = $query->limit(4)->all();
+            //$query->andWhere(['OR', 'startdate = ' . "'0000-00-00'", "startdate <='" . $now . "'"]);
+            //$query->andWhere(['OR', 'finishdate = ' . "'0000-00-00'", "finishdate >='" . $now . "'"]);
+            $query->orderBy('startdate ASC');
+            $result = $query->limit($limit)->all();
             
             //ถ้าเจอข่าวมากกว่า 1 ออกจากการค้นหาข่าว
             if(count($result) > 0){
@@ -237,6 +240,29 @@ class Article extends \yii\db\ActiveRecord {
         }
 
         return $data;
+    }
+    
+    public function searchCalendarAll() {
+        $arr = array();
+        $langs = \app\components\langs::getLang();
+        $_lan = [$langs, 'english', 'thai']; //ค้นหาข่าวในภาษานั้น ๆ ก่อนถ้าไม่เจอข่าว ให้ค้นหาในภาษาอังกฤษ ภาษาไทย ตามลำดับ
+        $cat = ['thai' => 3, 'english' => 8];
+        foreach ($_lan as $l) {
+            $cid = $cat[$l];
+            $query = Article::find()->where(['cid' => $cid, 'langs' => $l, 'published' => 1]);
+            $query->orderBy('startdate ASC');
+            $result = $query->all();
+            
+            //ถ้าเจอข่าวมากกว่า 1 ออกจากการค้นหาข่าว
+            if(count($result) > 0){
+                break;
+            }
+        }
+
+        foreach ($result as $r) {
+            $arr[] = array('title' => $r->title, 'start' => $r->startdate, 'end' => $r->finishdate, 'url' => \yii\helpers\Url::to(['site/view', 'id' => $r->id]), 'allDay' => false);
+        }
+        return $arr;
     }
 
 }

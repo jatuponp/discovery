@@ -23,12 +23,18 @@ use app\components\Ncontent;
                                 // see http://arshaw.com/fullcalendar/docs/
                                 'lang' => 'th-th', // optional, if empty get app language
                                 'header' => [
-                                    'left' => 'prev,next today',
+                                    'left' => '',
                                     'center' => 'title',
-                                    'right' => 'month,agendaWeek,agendaDay'
+                                    'right' => 'prev,next today'
                                 ],
                                 'editable' => false,
-                                //'events' => $model->searchCalendarAll(),
+                                'events' => $model->searchCalendarAll(),
+                                'eventClick' => 'function(event) {
+                                    if (event.url) {
+                                        window.open(event.url);
+                                        return false;
+                                    }
+                                }'
                             ],
                         ]);
                         ?>

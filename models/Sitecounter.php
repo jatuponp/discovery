@@ -19,6 +19,7 @@ use Yii;
 class Sitecounter extends \yii\db\ActiveRecord {
 
     public $year;
+    public $cnt;
 
     /**
      * @inheritdoc

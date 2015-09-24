@@ -205,6 +205,43 @@ $slide = $slider->slider();
             </div>
         </div>
 
+        <div class="container clear-bottommargin clearfix">
+            <div class="clearfix"></div>
+            <div class="row">
+                <h3><a href="<?= \yii\helpers\Url::to(['event/index']) ?>"><?= Yii::t('app', 'Upcomming Events') ?></a></h3><br/>
+                <ol class="timeline">
+                    <?php
+                    foreach ($news->eventNews() as $n):
+                        $con = new app\components\Ncontent($n->fulltexts);
+                        ?>
+                        <li class="timeline__step done">
+                            <input class="timeline__step-radio" id="trigger1{{identifier}}" name="trigger{{identifier}}" type="radio">
+
+                            <label class="timeline__step-label" for="trigger1{{identifier}}">
+                                <span class="timeline__step-content">
+                                    <?= date("j M Y", strtotime($n->startdate)) ?>
+                                </span>
+                            </label>
+
+                            <span class="timeline__step-content" style="padding: 10px;">
+                                <a href="<?= yii\helpers\Url::to(['site/view', 'id' => $n->id]) ?>">
+                                <img src="<?= $con->getImg() ?>" style="width: 100%; padding: 15px;"/><br/>
+                                <?= $n->title ?><br/>
+                                </a>
+                                <p style="text-align: left; word-wrap: break-word;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <?= $con->getLimitText() ?>                                
+                                </p>
+                            </span>
+
+                            <i class="timeline__step-marker"><?= date("j", strtotime($n->startdate)) ?></i>
+                        </li>
+                    <?php endforeach; ?>                    
+                </ol>                
+            </div>
+            <div class="clearfix"></div>
+            <br/><br/>
+        </div>
+
     </div>
 
 </section><!-- #content end -->

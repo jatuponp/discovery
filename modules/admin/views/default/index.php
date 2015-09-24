@@ -14,7 +14,24 @@ $this->title = 'Dashboard';
         <div class="row">
             <div class="dashboard_box">
                 <h2>Top Page View.</h2>
-                <br/><br/>
+                <?php
+                $result = app\models\Sitecounter::find()
+                        ->select(['module', 'module_id', 'cnt' => 'count(*)'])
+                        ->where('module != "site"')
+                        ->groupBy('module','module_id')
+                        ->orderBy('cnt DESC')
+                        ->limit(10)
+                        ->all();
+                echo '<table class="table table-striped"><tr><td width="70%">เว็บเพจ</td><td width="30%" style="text-align: right;">จำนวน</td></tr>';
+                foreach ($result as $r) {
+                    echo "<tr><td>";
+                    echo $r->module . '&id=' .$r->module_id;
+                    echo "</td><td style='text-align: right'>";
+                    echo $r->cnt;
+                    echo ' ครั้ง</td></tr>';
+                }
+                echo "</table>";
+                ?>
             </div>
         </div>
     </div>
@@ -81,15 +98,24 @@ $this->title = 'Dashboard';
                     <div class="col-md-12">
                         <div class="dashboard_box">
                             <h2>Country</h2>
-                            <br/><br/><br/><br/><br/><br/><br/>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="dashboard_box">
-                            <h2>Browser</h2>
-                            <br/><br/><br/><br/><br/><br/><br/>
+                            <?php
+                            $result = app\models\Sitecounter::find()
+                                    ->select(['country', 'cnt' => 'count(*)'])
+                                    ->where(['module' => 'site'])
+                                    ->groupBy('country')
+                                    ->orderBy('cnt DESC')
+                                    ->limit(10)
+                                    ->all();
+                            echo '<table class="table table-striped"><tr><td width="70%">ประเทศ</td><td width="30%" style="text-align: right;">จำนวน</td></tr>';
+                            foreach ($result as $r) {
+                                echo "<tr><td>";
+                                echo $r->country;
+                                echo "</td><td style='text-align: right'>";
+                                echo $r->cnt;
+                                echo ' ครั้ง</td></tr>';
+                            }
+                            echo "</table>";
+                            ?>
                         </div>
                     </div>
                 </div>

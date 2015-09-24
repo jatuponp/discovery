@@ -22,15 +22,28 @@ class GuideController extends Controller {
     }
 
     public function actionIndex($cid = 1) {
+        $search = new TblGuides();        
         $langs = \app\components\langs::getLang();
-        $query = TblGuides::find()->where(['cid' => $cid, 'langs' => $langs, 'published' => 1])->orderBy('rand()');
+        $query = TblGuides::find()->where(['cid' => $cid, 'langs' => $langs, 'published' => 1]);
+        $amp = Yii::$app->getRequest()->getQueryParam('amp');
+        if($amp){
+            $query->andWhere(['amphur' => $amp]);
+        }
+        if($search->load(Yii::$app->request->post())){
+            $request = Yii::$app->request->post('TblGuides');
+            $s = $request['search'];
+            //$query->orWhere([['LIKE', 'titls', "%$s%"],['LIKE', 'fulltexts', "%$s%"]]);
+            //$query->orWhere('LIKE', 'titles', "%$s%");
+            $query->andFilterWhere(['or',['like','titles',$s],['like','fulltexts',$s]]);
+        }
+        $query->orderBy('rand()');
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => 10]);
         $list = $query->offset($pages->offset)
                 ->limit($pages->limit)
                 ->all();
 
-        return $this->render('index', ['model' => $list, 'cid' => $cid, 'pages' => $pages]);
+        return $this->render('index', ['search' => $search, 'model' => $list, 'cid' => $cid, 'pages' => $pages]);
     }
     
     public function actionView($id) {

@@ -10,6 +10,8 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Slider;
 use app\models\Article;
+use app\components\counter;
+use yii\data\Pagination;
 
 class SiteController extends Controller {
 
@@ -75,6 +77,33 @@ class SiteController extends Controller {
         $model->limit(10);
         $res = $model->all();
         return $this->render('search', ['model' => $res, 'search' => $search]);
+    }
+    
+    public function actionView($id) {
+        $counter = new counter();
+        $counter->hitsCounter('site/view', $id);
+
+        $model = Article::findOne(['id' => $id]);
+        $article = new Article;
+        return $this->render('view', ['model' => $model, 'article' => $article]);
+    }
+
+    public function actionViewall($cid = 2) {
+        $query = Article::find()->where(['cid' => $cid,'published' => 1]);
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count()]);
+        $models = $query->offset($pages->offset)
+                ->limit($pages->limit)
+                ->orderBy('ordering')
+                ->all();
+        
+        $cat = \app\models\Categories::findOne($cid);
+
+        return $this->render('viewall', [
+                    'model' => $models,
+                    'cat' => $cat,
+                    'pages' => $pages,
+        ]);
     }
 
     public function actionLogin() {

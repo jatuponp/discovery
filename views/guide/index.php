@@ -4,6 +4,8 @@ use yii\helpers\Url;
 use app\components\Ndate;
 use app\components\Ncontent;
 use yii\widgets\LinkPager;
+use yii\widgets\ActiveForm;
+use yii\helpers\Html;
 ?>
 <!-- Page Title
                 ============================================= -->
@@ -70,6 +72,43 @@ use yii\widgets\LinkPager;
                         'pagination' => $pages,
                     ]);
                     ?>
+                </div>
+            </div>
+
+            <div class="sidebar nobottommargin col_last clearfix">
+                <div class="sidebar-widgets-wrap">
+                    <div class="widget clearfix">
+                        <?php
+                        $form = ActiveForm::begin([
+                                    'id' => 'article-form',
+                                    'options' => [ 'class' => 'form-inline pull-right'],
+                                    'fieldConfig' => [
+                                        'template' => "{label}{input}",
+                                        'labelOptions' => [ 'class' => 'sr-only'],
+                                    ],
+                        ]);
+                        ?>
+                        <div class="row" style="margin-top: 10px;">
+                            <div class="col-lg-12">
+                                <?= $form->field($search, 'search')->input('text', [ 'style' => 'width: 200px']); ?>
+                                <?= Html::submitButton('<i class="glyphicon glyphicon-search"></i> ค้นหา', [ 'class' => 'btn btn-danger']) ?>
+                            </div>
+                        </div>
+
+
+                        <?php ActiveForm::end(); ?>
+                        <h4>อำเภอ</h4>
+                        <div class="tagcloud">
+                            <?php
+                                $ams = \app\models\TblAmphur::find()->all();
+                                foreach ($ams as $a){
+                                    echo '<a href="'. Url::to(['/guide/', 'cid'=>  Yii::$app->getRequest()->getQueryParam('cid'), 'amp' => $a->id]) .'">' . ((Yii::$app->language == 'th_TH')? $a->names:$a->names_eng) . '</a>';
+                                }
+                            ?>
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
         </div>

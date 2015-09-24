@@ -5,6 +5,8 @@ use app\components\Ndate;
 use app\components\counter;
 $d = new Ndate();
 $count = new counter();
+$this->title = $model->title;
+$this->registerMetaTag(['description' => $model->title]);
 ?>
 <section id="page-title">
 
