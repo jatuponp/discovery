@@ -51,7 +51,7 @@ $this->title = 'จัดการข้อมูลผู้ใช้';
                         <?php echo $form->field($model, 'password_hash')->passwordinput(['style' => 'width: 300px;', 'value'=>'']) ?> 
                     </div>
                     <div class="col-sm-7">
-                        <?php //echo $form->field($model, 'confirmPassword')->passwordinput(['style' => 'width: 300px;']) ?>
+                        <?php echo $form->field($model, 'confirmPassword')->passwordinput(['style' => 'width: 300px;']) ?>
                     </div>
                 </div>
                 <?= $form->field($model, 'authType')->listBox(['Administrator' => 'Administrator','Editor' => 'Editor', 'Publisher'=>'Publisher'], ['style' => 'width: 300px;']) ?>

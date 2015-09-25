@@ -57,16 +57,14 @@ class User extends ActiveRecord implements IdentityInterface {
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
             [['username', 'authType'], 'required'],
-            
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
             ['email', 'email'],
             //['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
-            
             ['password_hash', 'required'],
             //['confirmPassword', 'compare', 'compareAttribute' => 'password_hash', 'skipOnError'=>true],
             ['password_hash', 'string', 'min' => 6],
-            //['confirmPassword', 'safe']
+                //['confirmPassword', 'safe']
         ];
     }
 
@@ -81,6 +79,25 @@ class User extends ActiveRecord implements IdentityInterface {
             'password_hash' => 'Password',
             'confirmPassword' => 'Confirm Password',
             'authType' => 'กำหนดสิทธิ์'
+        ];
+    }
+
+    public function beforeSave($insert) {
+        if (parent::beforeSave($insert)) {
+            if ($this->isNewRecord) {
+                $this->setPassword($this->password_hash);
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public function scenarios()
+    {
+        return [
+            'default' => ['username', 'firstName', 'lastName', 'email', 'password_hash', 'password_reset_token','auth_key', 'role', 'status', 'create_at', 'update_time'],
+            'update' => ['username', 'firstName', 'lastName', 'email'],
         ];
     }
 
