@@ -6,6 +6,8 @@ use app\components\Ncontent;
 use yii\widgets\LinkPager;
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+use app\components\counter;
+$count = new counter();
 ?>
 <!-- Page Title
                 ============================================= -->
@@ -47,7 +49,7 @@ use yii\helpers\Html;
                                 <ul class="entry-meta clearfix">
                                     <li><i class="icon-calendar3"></i> <?= $d->getThaiLongDate($r->applyDate) ?></li>
                                     <li><i class="icon-user"></i> admin</li>
-                                    <li><i class="icon-comments"></i> 13 Views</li>
+                                    <li><i class="icon-comments"></i> <?= $count->getHitsCounter('guide', $r->id) ?> Views</li>
                                 </ul>
                                 <div class="entry-content">
                                     <?php
