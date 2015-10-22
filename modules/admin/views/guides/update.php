@@ -17,7 +17,7 @@ use dosamigos\ckeditor\CKEditor;
 $this->title = 'ข้อมูล' . app\models\TblGuides::getCat($model->cid);
 ?>
 <div class="article-content">
-    
+
     <?php
     $form = ActiveForm::begin([
                 'id' => 'login-form',
@@ -39,40 +39,56 @@ $this->title = 'ข้อมูล' . app\models\TblGuides::getCat($model->cid);
     </div>
     <br/>
     <div class="dashboard_box" style="padding-top: 15px;">
-    <div class="row">
-        <div class="col-lg-8">
+        <div class="row">
+            <div class="col-lg-8">
 
-            <?= $form->field($model, 'titles')->input('text', ['placeholder' => 'พิมพ์ชื่อเรื่องที่นี้']) ?>
-            <div class="form-group required" style="padding-left: 0px; padding-right: 10px;">
-                <?php
-                if (Yii::$app->user->can('Administrator')) {
-                    $folder = '';
-                } else {
-                    $folder = "Edit_" . Yii::$app->user->identity->gid;
-                }
-                echo $form->field($model, 'fulltexts')->widget(CKEditor::className(), [
-                    'options' => ['rows' => 15],
-                    'preset' => 'standard'
-                ]);
-                echo "<br/>";
-                ?>
-                <div class="help-block"></div>
+                <?= $form->field($model, 'titles')->input('text', ['placeholder' => 'พิมพ์ชื่อเรื่องที่นี้']) ?>
+                <div class="form-group required" style="padding-left: 0px; padding-right: 10px;">
+                    <?php
+                    // kcfinder options
+                    // http://kcfinder.sunhater.com/install#dynamic
+                    $kcfOptions = array_merge(\iutbay\yii2kcfinder\KCFinderInputWidget::$kcfDefaultOptions, [
+                        'uploadURL' => Yii::getAlias('@web') . '/images/',
+                        'access' => [
+                            'files' => [
+                                'upload' => true,
+                                'delete' => true,
+                                'copy' => false,
+                                'move' => false,
+                                'rename' => true,
+                            ],
+                            'dirs' => [
+                                'create' => true,
+                                'delete' => true,
+                                'rename' => true,
+                            ],
+                        ],
+                    ]);
+                    // Set kcfinder session options
+                    Yii::$app->session->set('KCFINDER', $kcfOptions);
+                    echo $form->field($model, 'fulltexts')->widget(CKEditor::className(), [
+                        'options' => ['rows' => 15],
+                        'preset' => 'standard'
+                    ]);
+                    echo "<br/>";
+                    ?>
+                    <div class="help-block"></div>
+                </div>
+                <?= $form->field($model, 'id', ['options' => ['class' => 'sr-only']])->hiddenInput() ?>
+                <?= $form->field($model, 'cid', ['options' => ['class' => 'sr-only']])->hiddenInput() ?>
+                <?= $form->field($model, 'langs', ['options' => ['class' => 'sr-only']])->hiddenInput() ?>
             </div>
-            <?= $form->field($model, 'id', ['options' => ['class' => 'sr-only']])->hiddenInput() ?>
-            <?= $form->field($model, 'cid', ['options' => ['class' => 'sr-only']])->hiddenInput() ?>
-            <?= $form->field($model, 'langs', ['options' => ['class' => 'sr-only']])->hiddenInput() ?>
+            <div class="col-lg-4">
+                <?= $form->field($model, 'amphur')->dropDownList(\app\models\TblAmphur::makeDropDown()) ?>
+                <?= $form->field($model, 'address')->input('text') ?>
+                <?= $form->field($model, 'contacts')->input('text') ?>
+                <?= $form->field($model, 'phone')->input('text') ?>
+                <?= $form->field($model, 'fax')->input('text') ?>
+                <?= $form->field($model, 'emails')->input('text') ?>
+                <?= $form->field($model, 'website')->input('text') ?>
+            </div>
         </div>
-        <div class="col-lg-4">
-            <?= $form->field($model, 'amphur')->dropDownList(\app\models\TblAmphur::makeDropDown()) ?>
-            <?= $form->field($model, 'address')->input('text') ?>
-            <?= $form->field($model, 'contacts')->input('text') ?>
-            <?= $form->field($model, 'phone')->input('text') ?>
-            <?= $form->field($model, 'fax')->input('text') ?>
-            <?= $form->field($model, 'emails')->input('text') ?>
-            <?= $form->field($model, 'website')->input('text') ?>
-        </div>
-    </div>
-    <?php ActiveForm::end(); ?>
+        <?php ActiveForm::end(); ?>
     </div>
 </div>
 
