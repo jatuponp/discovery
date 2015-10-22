@@ -11,8 +11,8 @@ $this->registerMetaTag(['description' => $model->title]);
 <section id="page-title">
 
     <div class="container clearfix">
-        <h1>ข้อมูลการท่องเที่ยว</h1>
-        <span>จังหวัดหนองคาย</span>
+        <h1><?= Yii::t('app', 'Information') ?></h1>
+<!--        <span><?= Yii::t('app', 'Nong Khai Province') ?></span>-->
     </div>
 
 </section><!-- #page-title end -->

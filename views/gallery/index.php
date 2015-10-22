@@ -47,7 +47,7 @@ $this->registerMetaTag(['description' => $model->title]);
                     <div class="row" style="margin-top: 10px;">
                         <div class="col-lg-12">
                             <?= $form->field($model, 'amphur')->dropDownList(\app\models\TblAmphur::makeDropDown(), [ 'style' => 'margin-right: 10px; width: 250px;', 'onchange' => 'form.submit();']) ?>
-                            <?= Html::submitButton('<i class="glyphicon glyphicon-search"></i> ค้นหา', [ 'class' => 'btn btn-danger']) ?>
+                            <?= Html::submitButton('<i class="glyphicon glyphicon-search"></i> ' . Yii::t('app', 'Search'), [ 'class' => 'btn btn-danger']) ?>
                         </div>
                     </div>
                     <?php ActiveForm::end(); ?>

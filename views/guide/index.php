@@ -93,13 +93,13 @@ $count = new counter();
                         <div class="row" style="margin-top: 10px;">
                             <div class="col-lg-12">
                                 <?= $form->field($search, 'search')->input('text', [ 'style' => 'width: 200px']); ?>
-                                <?= Html::submitButton('<i class="glyphicon glyphicon-search"></i> ค้นหา', [ 'class' => 'btn btn-danger']) ?>
+                                <?= Html::submitButton('<i class="glyphicon glyphicon-search"></i> '.Yii::t('app', 'Search'), [ 'class' => 'btn btn-danger']) ?>
                             </div>
                         </div>
 
 
                         <?php ActiveForm::end(); ?>
-                        <h4>อำเภอ</h4>
+                        <h4><?= Yii::t('app', 'Amphoe') ?></h4>
                         <div class="tagcloud">
                             <?php
                                 $ams = \app\models\TblAmphur::find()->all();

@@ -30,8 +30,8 @@ $ndate = new Ndate();
         <div class="container clearfix">
             <div class="postcontent nobottommargin clearfix">
                 <div style="margin-bottom: 10px;">
-                    <button class="btn btn-default disabled"><i class="glyphicon glyphicon-calendar"></i><?= $ndate->getThaiLongDate($model->applydate) ?></button> 
-                    <button class="btn btn-default disabled"><i class="glyphicon glyphicon-eye-open"></i><?= $counter->getHitsCounter('site/view', $model->id) ?> Views</button>
+                    <button class="btn btn-default disabled"><i class="glyphicon glyphicon-calendar"></i> <?= $ndate->getThaiLongDate($model->applydate) ?></button> 
+                    <button class="btn btn-default disabled"><i class="glyphicon glyphicon-eye-open"></i> <?= $counter->getHitsCounter('site/view', $model->id) ?> Views</button>
                 </div>
                 <div>
                     <?= $model->fulltexts ?>
@@ -94,7 +94,7 @@ $ndate = new Ndate();
                                     </a>
                                 </li>
                             <?php } ?>
-                            <?= Html::a('ข่าวย้อนหลัง >>', Url::to(['site/viewall', 'cid' => $model->cid]), ['class' => 'btn btn-danger pull-right', 'style' => 'color:#ffffff;']) ?>
+                            <?= Html::a(Yii::t('app', 'News More'), Url::to(['site/viewall', 'cid' => $model->cid]), ['class' => 'btn btn-danger pull-right', 'style' => 'color:#ffffff;']) ?>
                         </ul>
                     </div>
                 </div>

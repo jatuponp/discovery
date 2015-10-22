@@ -135,31 +135,32 @@ $slide = $slider->slider();
 
     <div class="content-wrap">
         <div class="container clearfix">
-            <?php
-            $guid = app\models\TblGuides::find()->where(['cid' => 1, 'published' => 1, 'langs' => \app\components\langs::getlang()])->limit(30)->orderBy('rand()')->all();
-            foreach ($guid as $r):
-                $cont = new app\components\Ncontent($r->fulltexts);
-                $txt = trim($cont->getLimitText());
-                if ($cont->getImg() && !empty($txt)):
-                    ?>
-                    <div class="row clearfix">
-                        <div class="col-lg-6">
-                            <div class="heading-block topmargin">
-                                <h1><?= Yii::t('app', 'Welcome') ?></h1>
-                            </div>
-                            <p class="lead" style="word-wrap: break-word;"><b><?= $r->titles ?></b><br/><?= trim($cont->getLimitText()) ?> <a href="<?= \yii\helpers\Url::to(['guide/view', 'id' => $r->id]) ?>"><?= Yii::t('app', 'more') ?></a></p>
-                        </div>
-                        <div class="col-lg-6">
-                            <div style="position: relative; margin-bottom: -60px;" class="ohidden" data-height-lg="426" data-height-md="567" data-height-sm="470" data-height-xs="287" data-height-xxs="183">
-                                <img src="<?= Yii::getAlias('@web') . '/' . $cont->getImg() ?>" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" data-delay="100" alt="discover">
-                                <!--<img src="images/stories/travels/mnongkhai/lam21.jpg" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" data-delay="400" alt="iPad">-->
-                            </div>
-                        </div>
+
+        <?php
+        $Welcome = app\models\Article::find()->where(['cid' => 11, 'published' => 1])->limit(1)->all();
+        foreach ($Welcome as $r):
+            $cont = new app\components\Ncontent($r->fulltexts);
+            $txt = trim($cont->getLimitText());
+            $allImg = $cont->getAllImg();
+            $secondImg = $allImg[1][1];
+            ?>
+            <div class="row clearfix">
+                <div class="col-lg-6">
+                    <div class="topmargin">
+                        <h1><?= Yii::t('app', 'Welcome') ?></h1>
                     </div>
-                    <div class="divider"><i class="icon-circle center"></i></div>
-                    <?php break; ?>
-                <?php endif; ?>
-            <?php endforeach; ?>
+                    <p class="lead" style="word-wrap: break-word;"><?= trim($cont->getLimitText(500)) ?> <a href="<?= \yii\helpers\Url::to(['site/view', 'id' => $r->id]) ?>"><?= Yii::t('app', 'More') ?></a></p>
+                </div>
+                <div class="col-lg-6">
+                    <div style="position: relative; margin-bottom: -60px; margin-top: 0px;" class="ohidden" data-height-lg="426" data-height-md="567" data-height-sm="470" data-height-xs="287" data-height-xxs="183">
+                        <img src="<?= $cont->getImg() ?>" style="position: absolute; bottom: 0; left: 0;" data-animate="fadeInUp" data-delay="100" alt="">
+                        <img src="<?= $secondImg ?>" style="position: absolute; bottom: 0; left: 0;" data-animate="fadeInUp" data-delay="3000" alt="">
+                    </div>
+                </div>
+            </div>
+            <br/><br/>
+            <div class="divider"><i class="icon-circle center"></i></div>
+        <?php endforeach; ?>
         </div>
 
 
@@ -167,15 +168,70 @@ $slide = $slider->slider();
             <div class="col_full clearfix">
                 <h3><a href="<?= \yii\helpers\Url::to(['gallery/index']) ?>"><?= Yii::t('app', 'Gallery') ?></a></h3>
                 <div style="margin-right: -1px; position: relative; height: 855.75px;" class="masonry-thumbs col-3" data-big="2" data-lightbox="gallery">
-                    <a style="width: 380px; position: absolute; left: 0px; top: 0px;" href="images/frontgallery/street_marget.jpg" data-lightbox="gallery-item"><img style="opacity: 1;" class="image_fade" src="images/frontgallery/street_marget.jpg"></a>
-                    <a style="width: 760px; position: absolute; left: 380px; top: 0px;" href="images/frontgallery/nongkhai.jpg" data-lightbox="gallery-item"><img style="opacity: 1;" class="image_fade" src="images/frontgallery/nongkhai.jpg"></a>
-                    <a style="width: 380px; position: absolute; left: 0px; top: 285px;" href="images/frontgallery/bride.jpg" data-lightbox="gallery-item"><img style="opacity: 1;" class="image_fade" src="images/frontgallery/bride.jpg"></a>
-                    <a style="width: 380px; position: absolute; left: 380px; top: 570px;" href="images/frontgallery/river02.jpg" data-lightbox="gallery-item"><img style="opacity: 1;" class="image_fade" src="images/frontgallery/river02.jpg"></a>
-                    <a style="width: 380px; position: absolute; left: 760px; top: 570px;" href="images/frontgallery/river03.jpg" data-lightbox="gallery-item"><img style="opacity: 1;" class="image_fade" src="images/frontgallery/river03.jpg"></a>
-                    <a style="width: 380px; position: absolute; left: 0px; top: 570px;" href="images/frontgallery/river01.jpg" data-lightbox="gallery-item"><img style="opacity: 1;" class="image_fade" src="images/frontgallery/river01.jpg"></a>
+                    <a style="width: 380px; position: absolute; left: 0px; top: 0px;" href="images/frontgallery/02.jpg" data-lightbox="gallery-item"><img style="opacity: 1;" class="image_fade" src="images/frontgallery/02.jpg"></a>
+                    <a style="width: 760px; position: absolute; left: 380px; top: 0px;" href="images/frontgallery/01.jpg" data-lightbox="gallery-item"><img style="opacity: 1;" class="image_fade" src="images/frontgallery/01.jpg"></a>
+                    <a style="width: 380px; position: absolute; left: 0px; top: 285px;" href="images/frontgallery/03.jpg" data-lightbox="gallery-item"><img style="opacity: 1;" class="image_fade" src="images/frontgallery/03.jpg"></a>
+                    <a style="width: 380px; position: absolute; left: 380px; top: 570px;" href="images/frontgallery/04.jpg" data-lightbox="gallery-item"><img style="opacity: 1;" class="image_fade" src="images/frontgallery/04.jpg"></a>
+                    <a style="width: 380px; position: absolute; left: 760px; top: 570px;" href="images/frontgallery/05.jpg" data-lightbox="gallery-item"><img style="opacity: 1;" class="image_fade" src="images/frontgallery/05.jpg"></a>
+                    <a style="width: 380px; position: absolute; left: 0px; top: 570px;" href="images/frontgallery/06.jpg" data-lightbox="gallery-item"><img style="opacity: 1;" class="image_fade" src="images/frontgallery/06.jpg"></a>
                 </div>
             </div>
-            <div class="divider"><i class="icon-circle center"></i></div>
+        </div>
+
+        <div class="container clearfix">
+            <div class="col_full clearfix">
+                <h3><a href="#"><?= Yii::t('app', 'Clip Videos') ?></a></h3>
+                <div id="null" style="margin-right: -1px; position: relative; height: 523.75px;" class="masonry-thumbs col-5" data-big="1" data-lightbox="gallery">
+                    <a style="width: 456px; position: absolute; left: 0px; top: 0px;" href="/discovery/web/images/videos/explore.mp4" data-lightbox="iframe">
+                        <img style="opacity: 1;" class="image_fade" src="/discovery/web/images/stories/1_1.jpg" alt="Gallery Thumb 1">
+                        <div class="overlay"><div class="overlay-wrap"><i class="icon-youtube-play"></i></div></div>
+                    </a>
+                    <a style="width: 228px; position: absolute; left: 456px; top: 0px; transition-property: opacity, transform; transition-duration: 0.4s; transform: translate3d(0px, 0px, 0px);" href="/discovery/web/images/videos/explore.mp4" data-lightbox="iframe">
+                        <img style="opacity: 1;" class="image_fade" src="/discovery/web/images/stories/2.jpg" alt="Gallery Thumb 2">
+                        <div class="overlay"><div class="overlay-wrap"><i class="icon-youtube-play"></i></div>ทดสอบวิดีโอ</div>
+                    </a>
+                    <a style="width: 228px; position: absolute; left: 684px; top: 0px; transition-property: opacity, transform; transition-duration: 0.4s; transform: translate3d(0px, 0px, 0px);" href="/discovery/web/images/videos/explore.mp4" data-lightbox="iframe">
+                        <img style="opacity: 1;" class="image_fade" src="/discovery/web/images/stories/3.jpg" alt="Gallery Thumb 3">
+                        <div class="overlay"><div class="overlay-wrap"><i class="icon-youtube-play"></i></div></div>
+                    </a>
+                    <a style="width: 228px; position: absolute; left: 912px; top: 0px; transition-property: opacity, transform; transition-duration: 0.4s; transform: translate3d(0px, 0px, 0px);" href="/discovery/web/images/videos/explore.mp4" data-lightbox="iframe">
+                        <img style="opacity: 1;" class="image_fade" src="/discovery/web/images/stories/4.jpg" alt="Gallery Thumb 4">
+                        <div class="overlay"><div class="overlay-wrap"><i class="icon-youtube-play"></i></div></div>
+                    </a>
+                    <a style="width: 228px; position: absolute; left: 456px; top: 171px;" href="/discovery/web/images/videos/explore.mp4" data-lightbox="iframe">
+                        <img style="opacity: 1;" class="image_fade" src="/discovery/web/images/stories/5.jpg" alt="Gallery Thumb 5">
+                        <div class="overlay"><div class="overlay-wrap"><i class="icon-youtube-play"></i></div></div>
+                    </a>
+                    <a style="width: 228px; position: absolute; left: 684px; top: 171px;" href="/discovery/web/images/videos/explore.mp4" data-lightbox="iframe">
+                        <img style="opacity: 1;" class="image_fade" src="/discovery/web/images/stories/6.jpg" alt="Gallery Thumb 6">
+                        <div class="overlay"><div class="overlay-wrap"><i class="icon-youtube-play"></i></div></div>
+                    </a>
+                    <a style="width: 228px; position: absolute; left: 912px; top: 171px;" href="/discovery/web/images/videos/explore.mp4" data-lightbox="iframe">
+                        <img style="opacity: 1;" class="image_fade" src="/discovery/web/images/stories/7.jpg" alt="Gallery Thumb 7">
+                        <div class="overlay"><div class="overlay-wrap"><i class="icon-youtube-play"></i></div></div>
+                    </a>
+                    <!--                    <a style="width: 228px; position: absolute; left: 0px; top: 342px;" href="http://canvashtml-cdn.semicolonweb.com/images/portfolio/full/9.jpg" data-lightbox="gallery-item">
+                                            <img style="opacity: 1;" class="image_fade" src="/discovery/web/images/stories/9.jpg" alt="Gallery Thumb 9">
+                                            <div class="overlay"><div class="overlay-wrap"><i class="icon-youtube-play"></i></div></div>
+                                        </a>
+                                        <a style="width: 228px; position: absolute; left: 228px; top: 342px;" href="http://canvashtml-cdn.semicolonweb.com/images/portfolio/full/10.jpg" data-lightbox="gallery-item">
+                                            <img style="opacity: 1;" class="image_fade" src="/discovery/web/images/stories/10.jpg" alt="Gallery Thumb 10">
+                                            <div class="overlay"><div class="overlay-wrap"><i class="icon-youtube-play"></i></div></div>
+                                        </a>-->
+                    <a style="width: 228px; position: absolute; left: 456px; top: 342px;" href="/discovery/web/images/videos/explore.mp4" data-lightbox="iframe">
+                        <img style="opacity: 1;" class="image_fade" src="/discovery/web/images/stories/11.jpg" alt="Gallery Thumb 14">
+                        <div class="overlay"><div class="overlay-wrap"><i class="icon-youtube-play"></i></div></div>
+                    </a>
+                    <a style="width: 228px; position: absolute; left: 684px; top: 342px;" href="/discovery/web/images/videos/explore.mp4" data-lightbox="iframe">
+                        <img style="opacity: 1;" class="image_fade" src="/discovery/web/images/stories/12.jpg" alt="Gallery Thumb 12">
+                        <div class="overlay"><div class="overlay-wrap"><i class="icon-youtube-play"></i></div></div>
+                    </a>
+                    <a style="width: 228px; position: absolute; left: 912px; top: 342px;" href="/discovery/web/images/videos/explore.mp4" data-lightbox="iframe">
+                        <img style="opacity: 1;" class="image_fade" src="/discovery/web/images/stories/12-1.jpg" alt="Gallery Thumb 13">
+                        <div class="overlay"><div class="overlay-wrap"><i class="icon-youtube-play"></i></div></div>
+                    </a>
+                </div>
+            </div>
         </div>
 
         <div class="container clear-bottommargin clearfix">
@@ -205,42 +261,42 @@ $slide = $slider->slider();
             </div>
         </div>
 
-        <div class="container clear-bottommargin clearfix">
-            <div class="clearfix"></div>
-            <div class="row">
-                <h3><a href="<?= \yii\helpers\Url::to(['event/index']) ?>"><?= Yii::t('app', 'Upcomming Events') ?></a></h3><br/>
-                <ol class="timeline">
-                    <?php
-                    foreach ($news->eventNews() as $n):
-                        $con = new app\components\Ncontent($n->fulltexts);
-                        ?>
-                        <li class="timeline__step done">
-                            <input class="timeline__step-radio" id="trigger1{{identifier}}" name="trigger{{identifier}}" type="radio">
-
-                            <label class="timeline__step-label" for="trigger1{{identifier}}">
-                                <span class="timeline__step-content">
-                                    <?= date("j M Y", strtotime($n->startdate)) ?>
-                                </span>
-                            </label>
-
-                            <span class="timeline__step-content" style="padding: 10px;">
-                                <a href="<?= yii\helpers\Url::to(['site/view', 'id' => $n->id]) ?>">
-                                <img src="<?= $con->getImg() ?>" style="width: 100%; padding: 15px;"/><br/>
-                                <?= $n->title ?><br/>
-                                </a>
-                                <p style="text-align: left; word-wrap: break-word;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <?= $con->getLimitText() ?>                                
-                                </p>
-                            </span>
-
-                            <i class="timeline__step-marker"><?= date("j", strtotime($n->startdate)) ?></i>
-                        </li>
-                    <?php endforeach; ?>                    
-                </ol>                
-            </div>
-            <div class="clearfix"></div>
-            <br/><br/>
-        </div>
+        <!--        <div class="container clear-bottommargin clearfix">
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <h3><a href="<?= \yii\helpers\Url::to(['event/index']) ?>"><?= Yii::t('app', 'Upcomming Events') ?></a></h3><br/>
+                        <ol class="timeline">
+        <?php
+        foreach ($news->eventNews() as $n):
+            $con = new app\components\Ncontent($n->fulltexts);
+            ?>
+                                                <li class="timeline__step done">
+                                                    <input class="timeline__step-radio" id="trigger1{{identifier}}" name="trigger{{identifier}}" type="radio">
+                        
+                                                    <label class="timeline__step-label" for="trigger1{{identifier}}">
+                                                        <span class="timeline__step-content">
+            <?= date("j M Y", strtotime($n->startdate)) ?>
+                                                        </span>
+                                                    </label>
+                        
+                                                    <span class="timeline__step-content" style="padding: 10px;">
+                                                        <a href="<?= yii\helpers\Url::to(['site/view', 'id' => $n->id]) ?>">
+                                                            <img src="<?= $con->getImg() ?>" style="width: 100%; padding: 15px;"/><br/>
+            <?= $n->title ?><br/>
+                                                        </a>
+                                                        <p style="text-align: left; word-wrap: break-word;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <?= $con->getLimitText() ?>                                
+                                                        </p>
+                                                    </span>
+                        
+                                                    <i class="timeline__step-marker"><?= 'ธ.ค.'//date("M", strtotime($n->startdate))     ?></i>
+                                                </li>
+        <?php endforeach; ?>                    
+                        </ol>                
+                    </div>
+                    <div class="clearfix"></div>
+                    <br/><br/>
+                </div>-->
 
     </div>
 

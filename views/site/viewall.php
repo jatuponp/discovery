@@ -7,7 +7,7 @@ use yii\data\Pagination;
 
 //echo GoogleAnalytics::widget(['objectName' => 'ga']);
 
-$this->title = "ข่าวทั้งหมด";
+$this->title = Yii::t('app', 'all News');
 ?>
 <section id="page-title">
 

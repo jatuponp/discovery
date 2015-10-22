@@ -4,6 +4,7 @@ use yii\helpers\Url;
 use app\components\Ndate;
 use app\components\Ncontent;
 use app\components\counter;
+use kartik\social\FacebookPlugin;
 
 $d = new Ndate();
 $cnt = new counter();
@@ -40,7 +41,7 @@ $this->registerMetaTag(['description' => $model->titles]);
                             $i = 1;
                             foreach ($aImg[1] as $img) {
                                 ?>
-                                <div class="slide" data-thumb="<?= Yii::getAlias('@web') . '/' . $img ?>"><img src="<?= Yii::getAlias('@web') . '/' . $img ?>"></div>
+                            <div class="slide" data-thumb="<?= ((file_exists($img))? Yii::getAlias('@web') . '/' . $img : $img) ?>"><img src="<?= ((file_exists($img))? Yii::getAlias('@web') . '/' . $img : $img) ?>"></div>
                                 <?php
                                 $i++;
                             }
@@ -51,6 +52,12 @@ $this->registerMetaTag(['description' => $model->titles]);
                 </div>
 
                 <div class="line"></div>
+                <?php
+                $social = Yii::$app->getModule('social');
+
+                echo FacebookPlugin::widget(['type' => FacebookPlugin::LIKE, 'settings' => ['share' => 'true', 'width' => '500px', 'href' => Yii::$app->urlManager->createAbsoluteUrl(['guide/view', 'id' => $model->id])]]);
+                echo FacebookPlugin::widget(['type' => FacebookPlugin::COMMENT, 'settings' => ['width' => '100%', 'href' => Yii::$app->urlManager->createAbsoluteUrl(['guide/view', 'id' => $model->id])]]);
+                ?>
             </div>
 
             <!-- Sidebar
@@ -70,15 +77,15 @@ $this->registerMetaTag(['description' => $model->titles]);
                             foreach ($Attractions as $r) {
                                 $cont = new Ncontent($r->fulltexts);
                                 $img = Yii::getAlias('@webroot') . '/' . $cont->getImg();
-                                if($cont->getImg()){
-                                ?>
-                                <div class="">
-                                    <a href="<?= Url::to(['guide/view', 'id' => $r->id]) ?>"><img src="<?= Yii::getAlias('@web') . '/' . $cont->getImg() ?>" /></a>
-                                    <div class="portfolio-desc center nobottompadding">
-                                        <h5><?= $r->titles ?></h5>
+                                if ($cont->getImg()) {
+                                    ?>
+                                    <div class="">
+                                        <a href="<?= Url::to(['guide/view', 'id' => $r->id]) ?>"><img src="<?= ((file_exists($cont->getImg()))? Yii::getAlias('@web') . '/' . $cont->getImg() : $cont->getImg()) ?>" /></a>
+                                        <div class="portfolio-desc center nobottompadding">
+                                            <h5><?= $r->titles ?></h5>
+                                        </div>
                                     </div>
-                                </div>
-                                <?php
+                                    <?php
                                 }
                             }
                             ?>
